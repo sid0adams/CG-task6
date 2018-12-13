@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28010.2046
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CG-task6", "CG-task6\CG-task6.csproj", "{73AE1E6E-BA28-428D-82C5-A1F3B5175138}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionDrawLib", "FunctionDrawLib\FunctionDrawLib.csproj", "{4A61ECE0-B021-4670-8B77-BAC863AC3F51}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{73AE1E6E-BA28-428D-82C5-A1F3B5175138}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73AE1E6E-BA28-428D-82C5-A1F3B5175138}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73AE1E6E-BA28-428D-82C5-A1F3B5175138}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A61ECE0-B021-4670-8B77-BAC863AC3F51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A61ECE0-B021-4670-8B77-BAC863AC3F51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A61ECE0-B021-4670-8B77-BAC863AC3F51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A61ECE0-B021-4670-8B77-BAC863AC3F51}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
