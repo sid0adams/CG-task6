@@ -1,3 +1,3 @@
-# CG-task6
+﻿# CG-task6
 
-![Иллюстрация к проекту](https://github.com/sid0adams/CG-task6/raw/master/Capture.PNG)
+![Иллюстрация к проекту](https://github.com/sid0adams/CG-task6/raw/master/Image/Capture.PNG)
