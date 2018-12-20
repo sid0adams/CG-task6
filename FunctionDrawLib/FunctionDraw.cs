@@ -33,17 +33,7 @@ namespace FunctionDrawLib
         {
             bitmap?.Dispose();
             bitmap = new Bitmap(ScreenSize.Width, ScreenSize.Height);
-            View2Screen(0, 0, out int Xs, out int Ys);
-            if(0 < View.X+View.Width && 0> View.X)
-                for (int Y = 0; Y < ScreenSize.Height; Y++)
-                {
-                    DrawPoint(Xs, Y,Color.Black);
-                }
-            if(0 < View.Y && 0 > View.Y - View.Height)
-                for (int X = 0; X < ScreenSize.Width; X++)
-                {
-                    DrawPoint(X, Ys,Color.Black);
-                }
+            DrawXoY();
             if (Function != null)
             {
                 double LastXv = 0;
@@ -63,11 +53,11 @@ namespace FunctionDrawLib
                     Screen2View(X, 0, out NextXv, out NextYv);
                     NextYv = Function.GetX(NextXv);
                     View2Screen(NextXv, NextYv, out NextXs, out NextYs);
-                    if (!(LastYv > View.Y&& NextYv > View.Y || LastYv < (View.Y - View.Height) && NextYv < (View.Y - View.Height)))
+                    if (!(LastYv > View.Y && NextYv > View.Y || LastYv < (View.Y - View.Height) && NextYv < (View.Y - View.Height)))
                     {
-                        for (int Y = Math.Max(0,Math.Min(LastYs, NextYs)); Y <= Math.Min(ScreenSize.Height -1, Math.Max(LastYs, NextYs)); Y++)
+                        for (int Y = Math.Max(0, Math.Min(LastYs, NextYs)); Y <= Math.Min(ScreenSize.Height - 1, Math.Max(LastYs, NextYs)); Y++)
                         {
-                            DrawPoint(X, Y,Color.Red);
+                            DrawPoint(X, Y, Color.Red);
                         }
                     }
                     LastXv = NextXv;
@@ -78,6 +68,58 @@ namespace FunctionDrawLib
             }
 
             return bitmap;
+        }
+
+        private void DrawXoY()
+        {
+            int TextS = 10;
+            Graphics g = Graphics.FromImage(bitmap);
+            double t = View.Height * 100 / ScreenSize.Height;
+            t = Math.Pow(10, Math.Round(Math.Log10(t)-0.2));
+            View2Screen(0, 0, out int Xs, out int Ys);
+            g.DrawString("0", new Font("Microsoft Sans Serif", TextS), Brushes.Black, Xs+ 5, Ys+5);
+            if (0 < View.X + View.Width && 0 > View.X)
+            {
+                g.DrawLine(Pens.Black, Xs, 0, Xs, ScreenSize.Height);
+                g.DrawString("y", new Font("Microsoft Sans Serif", TextS), Brushes.Black, Xs - 30, 5);
+                double Y = t;
+                while (Y < View.Y)
+                {
+                    View2Screen(0, Y, out int Xt, out int Yt);
+                    g.DrawLine(Pens.Black, Xt - 10, Yt, Xt + 10, Yt);
+                    g.DrawString(Y.ToString(), new Font("Microsoft Sans Serif", TextS), Brushes.Black, Xt + 5, Yt);
+                    Y += t;
+                }
+                Y = -t;
+                while (Y > View.Y - View.Height)
+                {
+                    View2Screen(0, Y, out int Xt, out int Yt);
+                    g.DrawLine(Pens.Black, Xt - 10, Yt, Xt + 10, Yt);
+                    g.DrawString(Y.ToString(), new Font("Microsoft Sans Serif", TextS), Brushes.Black, Xt + 5, Yt);
+                    Y -= t;
+                }
+            }
+            if (0 < View.Y && 0 > View.Y - View.Height)
+            {
+                g.DrawLine(Pens.Black, 0, Ys, ScreenSize.Width,Ys);
+                g.DrawString("x", new Font("Microsoft Sans Serif", TextS), Brushes.Black, ScreenSize.Width - 15 , Ys - 30);
+                double X = t;
+                while (X < View.X + View.Width)
+                {
+                    View2Screen(X, 0, out int Xt, out int Yt);
+                    g.DrawLine(Pens.Black, Xt, Yt - 10, Xt, Yt + 10);
+                    g.DrawString(X.ToString(), new Font("Microsoft Sans Serif", TextS), Brushes.Black, Xt , Yt + 5);
+                    X += t;
+                }
+                X = -t;
+                while (X > View.X)
+                {
+                    View2Screen(X, 0, out int Xt, out int Yt);
+                    g.DrawLine(Pens.Black, Xt, Yt - 10, Xt, Yt + 10);
+                    g.DrawString(X.ToString(), new Font("Microsoft Sans Serif", TextS), Brushes.Black, Xt, Yt + 5);
+                    X -= t;
+                }
+            }
         }
 
         public FunctionDraw(Size screenSize, RectangleF view)
