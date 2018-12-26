@@ -9,7 +9,7 @@ namespace FunctionDrawLib
     public class Function
     {
         INode Root { get; set;}
-        public double GetX(double X) => Root.GetX(X);
+        public double GetY(double X) => Root.GetX(X);
         public Function(string str)
         {
             StringBuilder sb = new StringBuilder();

@@ -46,12 +46,12 @@ namespace FunctionDrawLib
                 int NextXs = 0;
                 int NextYs = 0;
                 Screen2View(-1, 0, out LastXv, out LastYv);
-                LastYv = Function.GetX(LastXv);
+                LastYv = Function.GetY(LastXv);
                 View2Screen(LastXv, LastYv, out LastXs, out LastYs);
                 for (int X = 0; X < ScreenSize.Width; X++)
                 {
                     Screen2View(X, 0, out NextXv, out NextYv);
-                    NextYv = Function.GetX(NextXv);
+                    NextYv = Function.GetY(NextXv);
                     View2Screen(NextXv, NextYv, out NextXs, out NextYs);
                     if (!(LastYv > View.Y && NextYv > View.Y || LastYv < (View.Y - View.Height) && NextYv < (View.Y - View.Height)))
                     {
